@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>
+Search School
+</title>
+</head>
+<body>
+<center><u><h1>Search the Schools!</h1></u></center>
+<br/>
+<p>Search the schools based on the following criterias with keyword match!!!!!</p>
+Enter the Search Keyword:<input type="text" name="keywordsearch" id="keyword" placeholder="Enter Keyword to search schools"/>
+<br/>
+<p>Select the search to criteria</p>
+<input type="radio" class="category" id="searchBy1" name="searchoption" value="schoolname"/>School Name<br/>
+<input type="radio" class="category" id="searchBy2" name="searchoption" value="address"/>Address<br/>
+<input type="radio" class="category" id="searchBy3" name="searchoption" value="area"/>Area<br/>
+<input type="radio" class="category" id="searchBy4" name="searchoption" value="pincode"/>Pincode<br/>
+<input type="radio" class="category" id="searchBy5" name="searchoption" value="landmark"/>Landmark<br/>
+<button type="button" name="submit" value="Search" onclick="processSearch()">Search</button>
+<div id="div1"></div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+function processSearch(){
+var searchkeyword=document.getElementById('keyword').value;
+var searchBy='';
+if(document.getElementById('searchBy1').checked){
+	searchBy=document.getElementById('searchBy1').value;
+}
+if(document.getElementById('searchBy2').checked){
+	searchBy=document.getElementById('searchBy2').value;
+}
+if(document.getElementById('searchBy3').checked){
+	searchBy=document.getElementById('searchBy3').value;
+}
+if(document.getElementById('searchBy4').checked){
+	searchBy=document.getElementById('searchBy4').value;
+}
+if(document.getElementById('searchBy5').checked){
+	searchBy=document.getElementById('searchBy5').value;
+}
+console.log(searchkeyword+" "+searchBy);
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+		document.getElementById("div1").innerHTML=xhr.responseText;
+        //console.log(xhr.responseText);
+		//var data=xhr.responseText;
+		//var result=data.map(function(val){
+			//return val.schoolname;
+		//}).join(',');
+		//console.log(result);
+    }
+}
+xhr.open('GET', 'http://localhost:8080/searchschool.js?search='+searchkeyword+'&by='+searchBy+'', true);
+xhr.send(null);
+//$.get('http://localhost:8080/searchschool.js', function(responseText) {
+  //  console.log("called");
+//});
+}
+</script>
+</html>

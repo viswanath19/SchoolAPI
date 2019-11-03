@@ -1,0 +1,12 @@
+<html>
+<head>
+<title>
+Search School
+</title>
+</head>
+<body>
+<h1>Search the Schools!</h1>
+<br/>
+<p>Search the schools based on the following criterias with keyword match</p>
+</body>
+</html>
